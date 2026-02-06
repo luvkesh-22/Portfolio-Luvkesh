@@ -281,10 +281,22 @@ article:hover {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(2, 1fr); /* 🔥 2 by 2 layout */
+  gap: 2rem;
+  margin: 3rem 0;
 }
+
+/* Tablet & mobile adjustments */
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.cards-grid .card {
+  min-height: 220px;
+  padding: 2.2rem;
+}
+
 /* Grid layout for certificates */
 .cert-grid {
   display: grid;
@@ -309,11 +321,16 @@ body.light .hero-overlay {
   color: var(--text);
 }/* Hero banner with blurred background */
 .hero-banner {
-  background-image: url('./assets/Images/img/backgrounfimg.png'); /* your background image */
+  background-image: url('./assets/Images/img/backgrounfimg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+
+  min-height: 80vh;        /* ← THIS is the change */
+  display: flex;
+  align-items: center;
+
   padding: 4rem 0;
   overflow: hidden;
 }
@@ -322,8 +339,8 @@ body.light .hero-overlay {
   content: "";
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(8px); /* blur effect */
-  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
 
@@ -351,13 +368,14 @@ body.light .hero-overlay {
 }
 
 .hero-photo img {
-  width: 220px;
-  height: 220px;
+  width: 500px;      /* +40% */
+  height: 500px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--border);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.35);
 }
+
 
 /* Light theme adjustments */
 body.light .hero-banner::before {
@@ -369,3 +387,209 @@ body.light .hero-banner::before {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
+.hero-actions {
+  margin-top: 1.5rem;
+}
+
+.hero-actions .btn {
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+}
+/* Experience card certificate layout */
+.experience-card {
+  text-align: left;
+}
+
+.cert-title {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.cert-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.cert-img {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  cursor: zoom-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+}
+
+.cert-hint {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+/* Experience header with company logo */
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.company-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px;
+  border: 1px solid var(--border);
+}
+/* ============================= */
+/* 📱 GLOBAL MOBILE FIXES */
+/* ============================= */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 92%;
+  }
+}
+
+/* ============================= */
+/* HERO SECTION RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .site-title {
+    font-size: 2.2rem;
+  }
+
+  .site-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .hero-photo img {
+    width: 220px;   /* 🔥 FIXED */
+    height: 220px;
+    margin-top: 1.5rem;
+  }
+
+  .hero-actions {
+    margin-top: 1.25rem;
+  }
+}
+
+/* ============================= */
+/* NAV BAR RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 600px) {
+  .site-nav .container {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .site-nav a {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* ============================= */
+/* HOME PAGE CARDS (2x2 → STACK) */
+/* ============================= */
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cards-grid .card {
+    min-height: auto;
+  }
+}
+
+/* ============================= */
+/* PROJECTS / GALLERIES */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================= */
+/* EXPERIENCE HEADER */
+/* ============================= */
+
+@media (max-width: 600px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .company-logo {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ============================= */
+/* FOOTER RESPONSIVE */
+/* ============================= */
+
+/* ============================= */
+/* 📱 MOBILE NAV FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .site-nav .container {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 items per row */
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+    padding: 0.75rem 0;
+  }
+
+  .site-nav a {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+  }
+}
+
